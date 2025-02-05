@@ -7,9 +7,14 @@ router.post("/add", async (req, res) => {
   const { email, productId, quantity } = req.body;
   let user = await User.findOne({ email });
 
+  //validate user
   if (!user) {
     user = new User({ email, cart: [] });
   }
+
+  //push product to cart
+  user.cart.push({ product: productId, quantity });
+  await user.save();
 
   res.json(user.cart);
 });
