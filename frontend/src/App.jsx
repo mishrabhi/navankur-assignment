@@ -1,6 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import { CartProvider } from "./context/cartContext";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoutes";
 import Products from "./pages/Products";
@@ -10,44 +8,48 @@ import Login from "./pages/Login";
 
 function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <Router>
-          <Navbar />
-          <div className="container mx-auto p-4">
-            <Routes>
-              <Route path="/login" element={<Login />} />
+    <>
+      <Navbar />
+      <div className="container mx-auto p-4">
+        <Routes>
+          <Route path="/login" element={<Login />} />
 
-              {/* Private Routes */}
-              <Route
-                path="/"
-                element={
-                  <PrivateRoute>
-                    <Products />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/product/:id"
-                element={
-                  <PrivateRoute>
-                    <ProductDetails />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/cart"
-                element={
-                  <PrivateRoute>
-                    <Cart />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </div>
-        </Router>
-      </CartProvider>
-    </AuthProvider>
+          {/* Private Routes */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Products />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <PrivateRoute>
+                <Products />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <PrivateRoute>
+                <ProductDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
+    </>
   );
 }
 
