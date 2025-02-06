@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
   await axios.post(webhookURL, { email, cart, totalPrice });
 
   res.json({ message: "Purchase Completed" });
+  console.log(res);
 });
 
 module.exports = router;
