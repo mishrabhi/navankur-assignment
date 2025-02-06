@@ -10,16 +10,16 @@ const Products = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    } else {
-      axios
-        .get("http://localhost:5000/api/products", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((response) => setProducts(response.data))
-        .catch((error) => console.error("Error fetching products", error));
-    }
+    // if (!token) {
+    //   navigate("/login");
+    // } else {
+    axios
+      .get("http://localhost:5000/api/products", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => setProducts(response.data))
+      .catch((error) => console.error("Error fetching products", error));
+    // }
   }, [token, navigate]);
 
   return (
